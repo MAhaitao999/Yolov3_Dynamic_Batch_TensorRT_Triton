@@ -5,9 +5,9 @@
 
 ## 1. 实验环境
 
-- [TensorRT](docker pull nvcr.io/nvidia/tensorrt:20.08-py3): 7.1.3
-- [Triton Server](docker pull nvcr.io/nvidia/tritonserver:20.08-py3): v2.2.0
-- [Triton Client](docker pull nvcr.io/nvidia/tritonserver:20.08-py3-clientsdk): v2.2.0
+* [TensorRT](docker pull nvcr.io/nvidia/tensorrt:20.08-py3): 7.1.3
+* [Triton Server](docker pull nvcr.io/nvidia/tritonserver:20.08-py3): v2.2.0
+* [Triton Client](docker pull nvcr.io/nvidia/tritonserver:20.08-py3-clientsdk): v2.2.0
 
 所有的模型转换步骤均在TensorRT镜像中进行.
 
