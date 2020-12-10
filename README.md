@@ -23,6 +23,12 @@ cd Yolov3_Dynamic_Batch_TensorRT_Triton/
 pip3 install -r requirements.txt -i https://pypi.douban.com/simple
 ```
 
+默认的tensorrt:20.08-py3(TensorRT 7.1.3)镜像中并没有安装`onnx-graphsurgeon`环境, 需要自己手动安装, 而且只能以whl的方式. onnx-graphsurgeon的轮子我在`TensorRT-7.2.1.6.Ubuntu-18.04.x86_64-gnu.cuda-11.1.cudnn8.0.tar.gz`里面找到了, 为省去大家寻找的烦恼, 我特地将其放在whl/目录下.
+
+```sh
+pip3 install whl/onnx_graphsurgeon-0.2.6-py2.py3-none-any.whl
+```
+
 ## 2. 模型转换
 
 ### 2.1 yolov3权重文件下载
