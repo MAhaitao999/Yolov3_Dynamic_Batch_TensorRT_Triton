@@ -1,0 +1,2 @@
+# Yolov3_Dynamic_Batch_TensorRT_Triton
+将Yolov3模型转成可以进行动态Batch的TensorRT推理以及Triton Inference Serving上部署的TensorRT模型
