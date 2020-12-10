@@ -18,6 +18,7 @@ docker run --runtime=nvidia --network=host -it --name tensorrt7_laborary -v `pwd
 安装必要的Python环境:
 
 ```sh
+git clone https://github.com/MAhaitao999/Yolov3_Dynamic_Batch_TensorRT_Triton.git
 cd Yolov3_Dynamic_Batch_TensorRT_Triton/
 pip3 install -r requirements.txt -i https://pypi.douban.com/simple
 ```
@@ -63,7 +64,7 @@ cd triton_server_deployment/
 按照里面的README.md进行操作即可
 ```
 
-[TODO] 打算有时间加上Yolov4
+[TODO] 打算有时间加上Yolov4.
 
-如果对你有帮助记得给我点个**STAR**.
+如果对你有帮助记得给我点个**Star**.
 
