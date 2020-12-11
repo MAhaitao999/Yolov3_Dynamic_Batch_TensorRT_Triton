@@ -56,11 +56,15 @@ if __name__ == "__main__":
     inputs = []
     inputs.append(tritonhttpclient.InferInput("000_net", image.shape, "FP32"))
     inputs[0].set_data_from_numpy(image, binary_data=True)
+    outputs = []
+    outputs.append(tritonhttpclient.InferRequestedOutput("082_convolutional", binary_data=True))
+    outputs.append(tritonhttpclient.InferRequestedOutput("094_convolutional", binary_data=True))
+    outputs.append(tritonhttpclient.InferRequestedOutput("106_convolutional", binary_data=True))
     import time
     iter_num = 1
     t1 = time.time()
     for i in range(iter_num):
-        results = triton_client.infer("yolov3", inputs=inputs)
+        results = triton_client.infer("yolov3", inputs=inputs, outouts=outputs)
     t2 = time.time()
     print("inference cost {} ms".format(1000*(t2-t1)/iter_num))
     output1 = results.as_numpy("082_convolutional")
