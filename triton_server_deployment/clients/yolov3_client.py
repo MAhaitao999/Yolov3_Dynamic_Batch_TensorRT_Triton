@@ -64,7 +64,7 @@ if __name__ == "__main__":
     iter_num = 1
     t1 = time.time()
     for i in range(iter_num):
-        results = triton_client.infer("yolov3", inputs=inputs, outouts=outputs)
+        results = triton_client.infer("yolov3", inputs=inputs, outputs=outputs)
     t2 = time.time()
     print("inference cost {} ms".format(1000*(t2-t1)/iter_num))
     output1 = results.as_numpy("082_convolutional")
