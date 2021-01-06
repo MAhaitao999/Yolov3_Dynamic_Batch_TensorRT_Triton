@@ -23,8 +23,28 @@ nvcr.io/nvidia/tensorrt:20.11-py3, 对应的Triton Server部署环境是nvcr.io/
 
 #### 2. 给模型的输入输出重命名
 
+这一步的意义在于将输入输出重命名为标准成`input`, `outputx`这样比较标准的格式, 方便后面对onnx模型文件进行节点添加时代码的编写, 算是一个小trick吧.
+
+```sh
+python3 rename_ioname.py
 ```
+
+这一步执行完成之后, 生成`yolov3_dynamic_rename.onnx`这个重命名之后的onnx模型文件.
+
+#### 3. 给模型添加后处理
+
+由于原始的yolov3模型输出的格式并不能直接满足batchedNMSDynamicPlugin插件的输入要求, 因此需要自己添加一些操作构造出满足插件输入要求的数据格式. 插件的输入有两个,
+`Boxes input`和`Scores input`. 其中`Boxes input`的shape是`[batch_size, number_boxes, number_classes, number_box_parameters]`, `Scores input`的shape是
+`[batch_size, number_boxes, number_classes]`, 在本例中对应的具体值分别为`[-1, 22743, 1, 4]`和`[-1, 8, 22743, 80]`, 注意`Boxes input`的`number_classes`这一项为
+1, 这要求在设置插件的属性时将`shareLocation`属性设置成true, 表示`the boxes input are shared across all classes`.
+
+```sh
+python3 yolov3_add_postprocess.py
 ```
+
+这一步执行完之后会生成`yolov3_dynamic_postprocess.onnx`添加完后处理之后的onnx模型文件.
+
+#### 4. 给模型添加NMS节点
 
 ### 模型部署
 
