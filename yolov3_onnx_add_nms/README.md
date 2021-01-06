@@ -55,6 +55,16 @@ python3 yolov3_add_postprocess.py
 python3 onnx_add_nms_plugin.py
 ```
 
+执行完这一步会生成`yolov3_dynamic_postprocess_nms.onnx`模型文件.
+
+#### 5. 采用trtexec工具进行trt转换
+
+废话不多说, 直接上转换代码.
+
+```sh
+trtexec --workspace=2000 --onnx=yolov3_dynamic_postprocess_nms.onnx --explicitBatch --optShapes=input:16x3x608x608,origin_input_resolution:16x1x4 --maxShapes=input:32x3x608x608,origin_input_resolution:32x1x4 --minShapes=input:1x3x608x608,origin_input_resolution:1x1x4 --shapes=input:16x3x608x608,origin_input_resolution:16x1x4 --saveEngine=yolov3_dynamic_postprocess_nms.engine --verbose=1 --fp16
+```
+
 ### 模型部署
 
-
+关于部署这块我就不多说了, 参考`triton_server_deployment`目录下的`README.md`即可.
