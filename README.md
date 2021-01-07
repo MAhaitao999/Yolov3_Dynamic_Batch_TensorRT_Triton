@@ -70,6 +70,10 @@ cd triton_server_deployment/
 按照里面的README.md进行操作即可
 ```
 
+## 4. 后处理及NMS支持
+
+已支持将后处理逻辑及NMS全部集成到trt模型文件中去, 减少了采用numpy进行大量后处理及NMS所产生的耗时.
+
 [TODO] 打算有时间加上Yolov4.
 
 如果对你有帮助记得给我点个**Star**.
